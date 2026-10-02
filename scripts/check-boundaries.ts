@@ -1,5 +1,5 @@
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { dirname, join, relative, resolve } from "node:path";
 
 const root = process.cwd();
 const sourceRoot = join(root, "src");
@@ -33,10 +33,24 @@ const forbiddenPatterns = [
 
 for (const file of sourceFiles) {
   const content = readFileSync(file, "utf8");
+  for (const match of content.matchAll(/\b(?:from\s*|import\s*\(|import\s*)["']([^"']+)["']/g)) {
+    const imported = match[1];
+    const target = imported.startsWith("@/") ? resolve(sourceRoot, imported.slice(2)) : imported.startsWith(".") ? resolve(dirname(file), imported) : null;
+    if (target && relative(root, target).startsWith("scripts/")) failures.push(`CLI integration import found in ${relative(root, file)}.`);
+  }
+  if (/["']use server["']/.test(content)) failures.push(`Server action found in ${relative(root, file)}.`);
+  if (/GEMINI_API_KEY|SUPABASE_SECRET_KEY/.test(content)) failures.push(`Private configuration referenced in ${relative(root, file)}.`);
   for (const { label, pattern } of forbiddenPatterns) {
     if (pattern.test(content)) {
       failures.push(`${label} found in ${relative(root, file)}.`);
     }
+  }
+}
+
+const staticRoot = join(root, ".next", "static");
+if (existsSync(staticRoot)) {
+  for (const file of collectFiles(staticRoot).filter((path) => path.endsWith(".js"))) {
+    if (/GoogleGenAI|generativelanguage\.googleapis\.com|SUPABASE_SECRET_KEY|GEMINI_API_KEY|sb_secret_[A-Za-z0-9_-]{20,}/.test(readFileSync(file, "utf8"))) failures.push(`Integration or private configuration found in client build ${relative(root, file)}.`);
   }
 }
 

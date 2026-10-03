@@ -4,7 +4,18 @@ import { dirname, join, relative, resolve } from "node:path";
 const root = process.cwd();
 const sourceRoot = join(root, "src");
 const apiRoot = join(sourceRoot, "app", "api");
-const allowedRoute = "src/app/api/health/route.ts";
+const allowedRoutes = new Set([
+  "src/app/api/health/route.ts",
+  "src/app/api/play/start/route.ts",
+  "src/app/api/play/[roundId]/state/route.ts",
+  "src/app/api/play/[roundId]/initial/route.ts",
+  "src/app/api/play/[roundId]/move/ensure/route.ts",
+  "src/app/api/play/[roundId]/exposure/route.ts",
+  "src/app/api/play/[roundId]/final/route.ts",
+  "src/app/api/play/[roundId]/abort/route.ts",
+  "src/app/api/play/[roundId]/again/route.ts",
+  "src/app/api/brand-live/summary/route.ts",
+]);
 const failures: string[] = [];
 
 function collectFiles(directory: string): string[] {
@@ -19,30 +30,35 @@ const routeFiles = collectFiles(apiRoot)
   .filter((path) => path.endsWith("/route.ts"))
   .map((path) => relative(root, path));
 
-if (routeFiles.length !== 1 || routeFiles[0] !== allowedRoute) {
-  failures.push("Only GET /api/health is allowed in Stage 1.");
+if (routeFiles.length !== allowedRoutes.size || routeFiles.some((route) => !allowedRoutes.has(route))) {
+  failures.push("An API route exists outside the approved ONE MOVE v2 route set.");
 }
 
 const forbiddenPatterns = [
   { label: "external network request", pattern: /\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b/ },
   { label: "Google GenAI SDK import", pattern: /@google\/genai/ },
   { label: "Supabase SDK import", pattern: /@supabase\/supabase-js/ },
-  { label: "external URL literal", pattern: /https?:\/\// },
+  { label: "external URL literal", pattern: /https?:\/\/(?!www\.w3\.org\/2000\/svg\b)/ },
   { label: "secret-like value", pattern: /\b(?:AIza[0-9A-Za-z_-]{30,}|sb_secret_[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9_-]{20,})\b/ },
 ];
 
 for (const file of sourceFiles) {
   const content = readFileSync(file, "utf8");
+  const relativeFile = relative(root, file);
+  const isOneMoveServer = relativeFile.startsWith("src/features/one-move/server/");
+  const isOneMoveFeature = relativeFile.startsWith("src/features/one-move/");
   for (const match of content.matchAll(/\b(?:from\s*|import\s*\(|import\s*)["']([^"']+)["']/g)) {
     const imported = match[1];
     const target = imported.startsWith("@/") ? resolve(sourceRoot, imported.slice(2)) : imported.startsWith(".") ? resolve(dirname(file), imported) : null;
-    if (target && relative(root, target).startsWith("scripts/")) failures.push(`CLI integration import found in ${relative(root, file)}.`);
+    if (target && relative(root, target).startsWith("scripts/")) failures.push(`CLI integration import found in ${relativeFile}.`);
   }
-  if (/["']use server["']/.test(content)) failures.push(`Server action found in ${relative(root, file)}.`);
-  if (/GEMINI_API_KEY|SUPABASE_SECRET_KEY/.test(content)) failures.push(`Private configuration referenced in ${relative(root, file)}.`);
+  if (/["']use server["']/.test(content)) failures.push(`Server action found in ${relativeFile}.`);
+  if (!isOneMoveServer && /GEMINI_API_KEY|SUPABASE_SECRET_KEY/.test(content)) failures.push(`Private configuration referenced in ${relativeFile}.`);
   for (const { label, pattern } of forbiddenPatterns) {
-    if (pattern.test(content)) {
-      failures.push(`${label} found in ${relative(root, file)}.`);
+    const allowedIntegration = label === "Supabase SDK import" && relativeFile === "src/features/one-move/server/supabase-repository.ts";
+    const allowedPublicSource = label === "external URL literal" && isOneMoveFeature;
+    if (pattern.test(content) && !allowedIntegration && !allowedPublicSource) {
+      failures.push(`${label} found in ${relativeFile}.`);
     }
   }
 }
@@ -60,5 +76,5 @@ if (failures.length > 0) {
   }
   process.exitCode = 1;
 } else {
-  process.stdout.write("PASS: Stage 1 has one health route and no external service calls or embedded secrets.\n");
+  process.stdout.write("PASS: approved ONE MOVE v2 routes keep service integrations server-side and out of the client build.\n");
 }

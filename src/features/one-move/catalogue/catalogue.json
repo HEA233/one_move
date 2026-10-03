@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "2.0",
+  "catalogueVersion": "one-move-2026-10-03-mobile-v2",
+  "preparedDate": "2026-10-03",
+  "warning": "A researched starter, not a verified physical-pack audit. Check product identity and blocked fields before use. No complete ingredients list is asserted.",
+  "productIds": [
+    "charitea_mate_can",
+    "oom_balance"
+  ],
+  "products": [
+    {
+      "id": "charitea_mate_can",
+      "name": "ChariTea Mate",
+      "variant": "can",
+      "imagePath": null,
+      "imageHint": "Locate the user photo of the dark red mate can; inspect visually, do not assume filename.",
+      "fullLabelFactId": "ct_ingredients_full",
+      "volumeFactId": "ct_volume",
+      "caffeineFactId": "ct_caffeine_presence",
+      "caffeineFieldMeaning": "presence",
+      "barcode": null
+    },
+    {
+      "id": "oom_balance",
+      "name": "OOM Balance",
+      "variant": "peach / blood orange / hops can",
+      "imagePath": null,
+      "imageHint": "Locate the user photo of the pale can with large red OOM lettering; do not use Mindfuel.",
+      "fullLabelFactId": "oom_ingredients_full",
+      "volumeFactId": "oom_volume",
+      "caffeineFactId": "oom_caffeine_free",
+      "caffeineFieldMeaning": "absence",
+      "barcode": null
+    }
+  ],
+  "game": {
+    "missionId": "afternoon-drink-v1",
+    "missionText": "You are choosing one drink for an afternoon break. Which would you pick?",
+    "priceMode": "hypothetical",
+    "currency": "GBP",
+    "basePricePence": {
+      "charitea_mate_can": 250,
+      "oom_balance": 250
+    },
+    "priceDisclosure": "Pretend prices. Real products. No purchase needed.",
+    "discountPence": 50,
+    "maxReasons": 2,
+    "maxOtherCharacters": 160,
+    "switchPoints": 10,
+    "stayPoints": -10,
+    "abortPoints": 0,
+    "scoreOwner": "fictional_comeback_shop_per_round_not_shopper",
+    "interactionModel": "single_shopper_system_move",
+    "moveCount": 1,
+    "selectionPolicy": "contextual_v2",
+    "defaultSelector": "curated",
+    "brandView": "optional_read_only",
+    "requiresBrandPresence": false,
+    "requiresRoomCreation": false,
+    "scoreVisibility": "after_final_only",
+    "collectiveLeaderboard": false,
+    "maxActiveRoundPerSession": 1
+  },
+  "sources": {
+    "S02": {
+      "title": "ChariTea Mate CAN - official UK shop",
+      "url": "https://drinkinghelps.co.uk/products/charitea-mate-can",
+      "checkedDate": "2026-10-03",
+      "scope": "ChariTea Mate 330 ml can; current page snapshot, not a pack inspection"
+    },
+    "S03": {
+      "title": "ChariTea Mate - general brand page",
+      "url": "https://charitea.com/en/product/charitea-mate/",
+      "checkedDate": "2026-10-03",
+      "scope": "General product page; do not overwrite can-specific numerical values"
+    },
+    "S04": {
+      "title": "OOM Balance - official product page",
+      "url": "https://oomdrinks.com/products/oom-balance",
+      "checkedDate": "2026-10-03",
+      "scope": "OOM Balance; numerical nutrition/full label not established from inspected text"
+    },
+    "S05": {
+      "title": "OOM - official FAQ",
+      "url": "https://oomdrinks.com/pages/faq",
+      "checkedDate": "2026-10-03",
+      "scope": "Manufacturer FAQ; statements apply only where product applicability is confirmed"
+    },
+    "EXP01": {
+      "title": "ONE MOVE hypothetical pricing protocol",
+      "url": null,
+      "checkedDate": "2026-10-03",
+      "scope": "Experiment setting only. Not a real shelf price or discount offer."
+    }
+  },
+  "facts": [
+    {
+      "id": "ct_volume",
+      "brandId": "charitea_mate_can",
+      "key": "volume",
+      "value": 330,
+      "unit": "ml",
+      "basis": "one_can",
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "ct_flavour",
+      "brandId": "charitea_mate_can",
+      "key": "flavour",
+      "value": "Sparkling mate tea with orange and lemon.",
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "ct_caffeine_presence",
+      "brandId": "charitea_mate_can",
+      "key": "caffeine_presence",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "No numerical caffeine dose and no no-crash/health inference."
+    },
+    {
+      "id": "ct_organic_statement",
+      "brandId": "charitea_mate_can",
+      "key": "organic",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "ct_fairtrade_statement",
+      "brandId": "charitea_mate_can",
+      "key": "fairtrade_ingredients",
+      "value": "Uses Fairtrade ingredients.",
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Do not assert that 100% of the product is Fairtrade."
+    },
+    {
+      "id": "ct_donation",
+      "brandId": "charitea_mate_can",
+      "key": "donation",
+      "value": {
+        "amountPence": 5,
+        "currency": "GBP",
+        "per": "unit_sold",
+        "recipient": "Lemonaid & ChariTea Foundation"
+      },
+      "unit": null,
+      "basis": null,
+      "kind": "brand_statement",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Specific can page says per unit sold. No money is donated through this game."
+    },
+    {
+      "id": "ct_review_excerpt",
+      "brandId": "charitea_mate_can",
+      "key": "review_excerpt",
+      "value": {
+        "excerpt": "Tastes like proper tea",
+        "reviewerDisplay": "KC Cooper",
+        "scope": "one review on the can product page",
+        "verifiedPurchase": null
+      },
+      "unit": null,
+      "basis": null,
+      "kind": "individual_review",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Subjective opinion, not population evidence. Keep source attribution with excerpt."
+    },
+    {
+      "id": "ct_sugars",
+      "brandId": "charitea_mate_can",
+      "key": "total_sugars",
+      "value": 3.9,
+      "unit": "g",
+      "basis": "per_100_ml",
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "General page S03 differs; this seed uses the exact UK can source. Check actual pack."
+    },
+    {
+      "id": "ct_energy",
+      "brandId": "charitea_mate_can",
+      "key": "energy",
+      "value": 17,
+      "unit": "kcal",
+      "basis": "per_100_ml",
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "ct_ingredient_summary",
+      "brandId": "charitea_mate_can",
+      "key": "ingredient_summary",
+      "value": [
+        "carbonated mate-tea infusion",
+        "agave syrup",
+        "orange juice",
+        "lemon juice",
+        "carbonated black-tea infusion"
+      ],
+      "unit": null,
+      "basis": null,
+      "kind": "ingredient_highlights",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S02"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Summary only, not a replacement for a complete ordered allergen/ingredient label."
+    },
+    {
+      "id": "ct_ingredients_full",
+      "brandId": "charitea_mate_can",
+      "key": "ingredients_full",
+      "value": null,
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "needs_verification",
+      "sourceIds": [],
+      "checkedDate": null,
+      "packChecked": false,
+      "note": "Transcribe the full ordered can label or exact official label when available. Never invent missing text."
+    },
+    {
+      "id": "oom_flavour",
+      "brandId": "oom_balance",
+      "key": "flavour",
+      "value": "Lightly sparkling peach, blood orange and hops.",
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S04",
+        "S05"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "oom_caffeine_free",
+      "brandId": "oom_balance",
+      "key": "caffeine_free",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "manufacturer_statement",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S05"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": null
+    },
+    {
+      "id": "oom_no_added_sugar",
+      "brandId": "oom_balance",
+      "key": "no_added_sugar",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "manufacturer_statement",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S04"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Not the same as zero total sugars."
+    },
+    {
+      "id": "oom_vegan_statement",
+      "brandId": "oom_balance",
+      "key": "vegan",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "manufacturer_statement",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S05"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Not an allergen-free guarantee."
+    },
+    {
+      "id": "oom_ingredient_highlights",
+      "brandId": "oom_balance",
+      "key": "ingredient_highlights",
+      "value": [
+        "chaga",
+        "ashwagandha",
+        "L-tyrosine"
+      ],
+      "unit": null,
+      "basis": null,
+      "kind": "ingredient_highlights",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S04"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "No health benefit, dose or complete-ingredient-list claim."
+    },
+    {
+      "id": "oom_review_summary",
+      "brandId": "oom_balance",
+      "key": "review_summary",
+      "value": {
+        "average": 5.0,
+        "scale": 5,
+        "count": 6,
+        "platform": "brand website",
+        "scope": "OOM Balance product page"
+      },
+      "unit": null,
+      "basis": null,
+      "kind": "seller_hosted_review_summary",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S04"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "Snapshot checked on stated date; small self-selected review set, not a representative survey."
+    },
+    {
+      "id": "oom_recyclable_can",
+      "brandId": "oom_balance",
+      "key": "recyclable_can",
+      "value": true,
+      "unit": null,
+      "basis": null,
+      "kind": "manufacturer_statement",
+      "status": "public_source_checked",
+      "sourceIds": [
+        "S05"
+      ],
+      "checkedDate": "2026-10-03",
+      "packChecked": false,
+      "note": "No claim of zero impact or superiority to another material."
+    },
+    {
+      "id": "oom_volume",
+      "brandId": "oom_balance",
+      "key": "volume",
+      "value": null,
+      "unit": "ml",
+      "basis": "one_can",
+      "kind": "product_fact",
+      "status": "needs_verification",
+      "sourceIds": [],
+      "checkedDate": null,
+      "packChecked": false,
+      "note": "Earlier conversation mentioned 250 ml; verify the actual can or exact matching source before setting a value."
+    },
+    {
+      "id": "oom_sugars",
+      "brandId": "oom_balance",
+      "key": "total_sugars",
+      "value": null,
+      "unit": "g",
+      "basis": "per_100_ml",
+      "kind": "product_fact",
+      "status": "needs_verification",
+      "sourceIds": [],
+      "checkedDate": null,
+      "packChecked": false,
+      "note": "Do not use the earlier unverified 2.2 figure automatically."
+    },
+    {
+      "id": "oom_energy",
+      "brandId": "oom_balance",
+      "key": "energy",
+      "value": null,
+      "unit": "kcal",
+      "basis": "per_100_ml",
+      "kind": "product_fact",
+      "status": "needs_verification",
+      "sourceIds": [],
+      "checkedDate": null,
+      "packChecked": false,
+      "note": "Do not use the earlier unverified 12 figure automatically."
+    },
+    {
+      "id": "oom_ingredients_full",
+      "brandId": "oom_balance",
+      "key": "ingredients_full",
+      "value": null,
+      "unit": null,
+      "basis": null,
+      "kind": "product_fact",
+      "status": "needs_verification",
+      "sourceIds": [],
+      "checkedDate": null,
+      "packChecked": false,
+      "note": "Obtain complete ordered ingredients and warnings from the actual can or exact matching label."
+    }
+  ],
+  "cards": [
+    {
+      "id": "ct_price",
+      "brandId": "charitea_mate_can",
+      "family": "price",
+      "title": "A little sweeter?",
+      "shopperTextTemplate": "Game price: {price.before} to {price.after}.",
+      "factIds": [],
+      "sourceIds": [
+        "EXP01"
+      ],
+      "reasonTags": [
+        "price"
+      ],
+      "priority": 20,
+      "status": "ready",
+      "patch": {
+        "kind": "price",
+        "discountPence": 50
+      },
+      "templateId": "hypothetical-price-v1",
+      "caveat": "Hypothetical test. Not a real discount offer.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_taste",
+      "brandId": "charitea_mate_can",
+      "family": "taste",
+      "title": "Tell the flavour story",
+      "shopperTextTemplate": "{ct_flavour.value}",
+      "factIds": [
+        "ct_flavour"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "taste",
+        "packaging_brand"
+      ],
+      "priority": 10,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_flavour"
+        ],
+        "templateId": "ct_taste-v1"
+      },
+      "templateId": "ct_taste-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_caffeine",
+      "brandId": "charitea_mate_can",
+      "family": "proof",
+      "title": "Put the caffeine on the label",
+      "shopperTextTemplate": "Contains naturally occurring caffeine.",
+      "factIds": [
+        "ct_caffeine_presence"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "purpose"
+      ],
+      "priority": 30,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_caffeine_presence"
+        ],
+        "templateId": "ct_caffeine-v1"
+      },
+      "templateId": "ct_caffeine-v1",
+      "caveat": "This fact does not establish alertness, safety or suitability.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_organic",
+      "brandId": "charitea_mate_can",
+      "family": "trust",
+      "title": "Show how it is grown",
+      "shopperTextTemplate": "Made with organic ingredients.",
+      "factIds": [
+        "ct_organic_statement"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "ingredients",
+        "packaging_brand",
+        "other"
+      ],
+      "priority": 40,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_organic_statement"
+        ],
+        "templateId": "ct_organic-v1"
+      },
+      "templateId": "ct_organic-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_fairtrade",
+      "brandId": "charitea_mate_can",
+      "family": "trust",
+      "title": "Show the sourcing story",
+      "shopperTextTemplate": "{ct_fairtrade_statement.value}",
+      "factIds": [
+        "ct_fairtrade_statement"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "ingredients",
+        "packaging_brand",
+        "other"
+      ],
+      "priority": 50,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_fairtrade_statement"
+        ],
+        "templateId": "ct_fairtrade-v1"
+      },
+      "templateId": "ct_fairtrade-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_giveback",
+      "brandId": "charitea_mate_can",
+      "family": "trust",
+      "title": "A little good with your drink",
+      "shopperTextTemplate": "The brand contributes {ct_donation.value.amountPence}p per unit sold to its foundation.",
+      "factIds": [
+        "ct_donation"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "packaging_brand",
+        "other"
+      ],
+      "priority": 35,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_donation"
+        ],
+        "templateId": "ct_giveback-v1"
+      },
+      "templateId": "ct_giveback-v1",
+      "caveat": "Brand statement about real product sales. Playing makes no donation.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_review",
+      "brandId": "charitea_mate_can",
+      "family": "trust",
+      "title": "A sip from the review jar",
+      "shopperTextTemplate": "One reviewer wrote: \"{ct_review_excerpt.value.excerpt}\".",
+      "factIds": [
+        "ct_review_excerpt"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "taste",
+        "packaging_brand"
+      ],
+      "priority": 60,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_review_excerpt"
+        ],
+        "templateId": "ct_review-v1"
+      },
+      "templateId": "ct_review-v1",
+      "caveat": "One subjective review on the exact can listing; source available.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_sugar_number",
+      "brandId": "charitea_mate_can",
+      "family": "proof",
+      "title": "Show the sugar number",
+      "shopperTextTemplate": "Total sugars: {ct_sugars.value} {ct_sugars.unit} per 100 ml.",
+      "factIds": [
+        "ct_sugars"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "sugar_calories"
+      ],
+      "priority": 45,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_sugars"
+        ],
+        "templateId": "ct_sugar_number-v1"
+      },
+      "templateId": "ct_sugar_number-v1",
+      "caveat": "Not a low-sugar or sugar-free claim.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "ct_energy_number",
+      "brandId": "charitea_mate_can",
+      "family": "proof",
+      "title": "Show the energy label",
+      "shopperTextTemplate": "Energy: {ct_energy.value} {ct_energy.unit} per 100 ml.",
+      "factIds": [
+        "ct_energy"
+      ],
+      "sourceIds": [
+        "S02"
+      ],
+      "reasonTags": [
+        "sugar_calories"
+      ],
+      "priority": 55,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "ct_energy"
+        ],
+        "templateId": "ct_energy_number-v1"
+      },
+      "templateId": "ct_energy_number-v1",
+      "caveat": "Numerical label fact, not a health score.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_price",
+      "brandId": "oom_balance",
+      "family": "price",
+      "title": "A little sweeter?",
+      "shopperTextTemplate": "Game price: {price.before} to {price.after}.",
+      "factIds": [],
+      "sourceIds": [
+        "EXP01"
+      ],
+      "reasonTags": [
+        "price"
+      ],
+      "priority": 20,
+      "status": "ready",
+      "patch": {
+        "kind": "price",
+        "discountPence": 50
+      },
+      "templateId": "hypothetical-price-v1",
+      "caveat": "Hypothetical test. Not a real discount offer.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_taste",
+      "brandId": "oom_balance",
+      "family": "taste",
+      "title": "Tell the flavour story",
+      "shopperTextTemplate": "{oom_flavour.value}",
+      "factIds": [
+        "oom_flavour"
+      ],
+      "sourceIds": [
+        "S04",
+        "S05"
+      ],
+      "reasonTags": [
+        "taste",
+        "packaging_brand"
+      ],
+      "priority": 10,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_flavour"
+        ],
+        "templateId": "oom_taste-v1"
+      },
+      "templateId": "oom_taste-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_caffeine",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Clear up the caffeine question",
+      "shopperTextTemplate": "The manufacturer describes this drink as caffeine-free.",
+      "factIds": [
+        "oom_caffeine_free"
+      ],
+      "sourceIds": [
+        "S05"
+      ],
+      "reasonTags": [
+        "purpose"
+      ],
+      "priority": 30,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_caffeine_free"
+        ],
+        "templateId": "oom_caffeine-v1"
+      },
+      "templateId": "oom_caffeine-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_added_sugar",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Make the sugar label clearer",
+      "shopperTextTemplate": "No added sugar, according to the manufacturer.",
+      "factIds": [
+        "oom_no_added_sugar"
+      ],
+      "sourceIds": [
+        "S04"
+      ],
+      "reasonTags": [
+        "sugar_calories",
+        "ingredients"
+      ],
+      "priority": 35,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_no_added_sugar"
+        ],
+        "templateId": "oom_added_sugar-v1"
+      },
+      "templateId": "oom_added_sugar-v1",
+      "caveat": "This does not mean sugar-free.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_vegan",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Show the plant-based label",
+      "shopperTextTemplate": "The manufacturer labels this drink suitable for vegans.",
+      "factIds": [
+        "oom_vegan_statement"
+      ],
+      "sourceIds": [
+        "S05"
+      ],
+      "reasonTags": [
+        "ingredients"
+      ],
+      "priority": 45,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_vegan_statement"
+        ],
+        "templateId": "oom_vegan-v1"
+      },
+      "templateId": "oom_vegan-v1",
+      "caveat": "Not an allergen-free guarantee.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_ingredients",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Show what is in the blend",
+      "shopperTextTemplate": "Ingredient highlights: {oom_ingredient_highlights.value}.",
+      "factIds": [
+        "oom_ingredient_highlights"
+      ],
+      "sourceIds": [
+        "S04"
+      ],
+      "reasonTags": [
+        "ingredients",
+        "purpose"
+      ],
+      "priority": 50,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_ingredient_highlights"
+        ],
+        "templateId": "oom_ingredients-v1"
+      },
+      "templateId": "oom_ingredients-v1",
+      "caveat": "Ingredient presence only. No claim about effects; not the complete label.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_reviews",
+      "brandId": "oom_balance",
+      "family": "trust",
+      "title": "Open the review jar",
+      "shopperTextTemplate": "{oom_review_summary.value.average}/5 from {oom_review_summary.value.count} reviews on the brand website.",
+      "factIds": [
+        "oom_review_summary"
+      ],
+      "sourceIds": [
+        "S04"
+      ],
+      "reasonTags": [
+        "packaging_brand",
+        "other"
+      ],
+      "priority": 40,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_review_summary"
+        ],
+        "templateId": "oom_reviews-v1"
+      },
+      "templateId": "oom_reviews-v1",
+      "caveat": "Small seller-hosted review snapshot. Show the checked date and source.",
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_recycling",
+      "brandId": "oom_balance",
+      "family": "trust",
+      "title": "Give the can another life",
+      "shopperTextTemplate": "The manufacturer says the can is recyclable.",
+      "factIds": [
+        "oom_recyclable_can"
+      ],
+      "sourceIds": [
+        "S05"
+      ],
+      "reasonTags": [
+        "packaging_brand",
+        "other"
+      ],
+      "priority": 60,
+      "status": "ready",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_recyclable_can"
+        ],
+        "templateId": "oom_recycling-v1"
+      },
+      "templateId": "oom_recycling-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_sugar_number",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Show the sugar number",
+      "shopperTextTemplate": "Total sugars: {oom_sugars.value} {oom_sugars.unit} per 100 ml.",
+      "factIds": [
+        "oom_sugars"
+      ],
+      "sourceIds": [],
+      "reasonTags": [
+        "sugar_calories"
+      ],
+      "priority": 46,
+      "status": "needs_verification",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_sugars"
+        ],
+        "templateId": "oom_sugar_number-v1"
+      },
+      "templateId": "oom_sugar_number-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    },
+    {
+      "id": "oom_energy_number",
+      "brandId": "oom_balance",
+      "family": "proof",
+      "title": "Show the energy label",
+      "shopperTextTemplate": "Energy: {oom_energy.value} {oom_energy.unit} per 100 ml.",
+      "factIds": [
+        "oom_energy"
+      ],
+      "sourceIds": [],
+      "reasonTags": [
+        "sugar_calories"
+      ],
+      "priority": 56,
+      "status": "needs_verification",
+      "patch": {
+        "kind": "highlight",
+        "factIds": [
+          "oom_energy"
+        ],
+        "templateId": "oom_energy_number-v1"
+      },
+      "templateId": "oom_energy_number-v1",
+      "caveat": null,
+      "version": "1.0",
+      "titleAudience": "optional_observer_or_internal_catalogue",
+      "playerSelectable": false,
+      "allocation": "server_only_once_per_round",
+      "selectionVersion": "automatic-v2"
+    }
+  ],
+  "disabledIdeas": [
+    "unsupported_global_sales",
+    "invented_review",
+    "unverified_retailer_endorsement",
+    "packaging_redesign",
+    "medical_effect_claim",
+    "unsupported_comparative_health_claim"
+  ],
+  "interpretation": "Exploratory intervention-response records from simulated choices. Automatic contextual allocation is not random assignment. No causal uplift, acquired customers, validated strategy ranking or market prediction is established.",
+  "templateRules": {
+    "purpose": "The string is a documented template contract. Prefer a typed, allowlisted renderer registry keyed by templateId; do not evaluate code or arbitrary expressions.",
+    "arrayFormatting": "Join checked string arrays with commas for the designated ingredient-highlights template only.",
+    "nestedFactAccess": "Fact placeholders use factId.value or factId.value.field, and factId.unit where specified.",
+    "computedPriceTokens": "price.before and price.after are server-computed formatted GBP values from the frozen baseline and price patch.",
+    "onUnknown": "Do not interpolate null/undefined; gate the card rather than claiming a value."
+  },
+  "revisionNote": "Preserves the sourced two-product library from v1; removes brand-player runtime requirements. This update does not constitute a physical-pack audit.",
+  "automaticSelection": {
+    "eligible": "Ready cards for the other brand; all referenced facts supported and matching; renderable; positive game price after a price patch; banned claims excluded.",
+    "considered": "All eligible cards in the frozen catalogue. Do not prefilter to the three cards formerly offered to a brand player.",
+    "contextualCurated": {
+      "reasonOverlapWeight": 2,
+      "sort": "overlap descending, configured priority ascending, card ID ascending",
+      "outputCount": 1,
+      "probabilityMeaning": "Conditional deterministic policy: selected card probability 1; alternatives 0. This is not switch confidence and gives no overlap for causal comparison.",
+      "ignoredSemanticReasonKeys": [
+        "other"
+      ],
+      "otherReasonHandling": "Other-only or skipped reasons mean no semantic context. Private Other text is not used."
+    },
+    "contextualLive": {
+      "outputCount": 1,
+      "output": "selectedCardId, driverKeys, short tentative rationale",
+      "input": "approved IDs, frozen card text, selected reason keys; no raw note, identifier or health profile",
+      "probability": null,
+      "fallback": "persisted curated card; do not re-call model after timeout"
+    },
+    "optionalRandomised": {
+      "implementationPriority": "P2; not required for launch",
+      "policyId": "family_uniform_v1",
+      "usesReasonTagsForAllocation": false,
+      "sample": "uniform eligible family, then uniform card within that family",
+      "probabilityFormula": "1 / (number_of_eligible_families * number_of_cards_in_chosen_family)",
+      "noTreatmentControlIncluded": false
+    },
+    "record": "eligible IDs, exclusions, considered IDs, selected ID and exact frozen text, policy version, selector origin, known assignment probability, exposure and outcomes"
+  }
+}

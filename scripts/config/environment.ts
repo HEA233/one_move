@@ -2,6 +2,14 @@ import { createRequire } from "node:module";
 import { z } from "zod";
 
 export const environmentSchema = z.object({
+  ONE_MOVE_PROTOCOL_VERSION: z.string().optional(),
+  ONE_MOVE_CAMPAIGN_ID: z.string().optional(),
+  MOVE_POLICY: z.enum(["contextual_v2"]).optional(),
+  AI_MODE: z.enum(["curated", "live"]).optional(),
+  AI_USE_APPROVED: z.enum(["true", "false"]).optional(),
+  AI_MAX_CAMPAIGN_ATTEMPTS: z.string().optional(),
+  BRAND_OBSERVER_ENABLED: z.enum(["true", "false"]).optional(),
+  OBSERVER_ACCESS_KEY: z.string().optional(),
   AI_PROVIDER: z.enum(["mock", "gemini"]).optional(),
   ENABLE_LIVE_AI_SMOKE: z.enum(["true", "false"]).optional(),
   FREE_TIER_CONFIRMED: z.enum(["true", "false"]).optional(),

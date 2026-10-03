@@ -2,6 +2,7 @@ import "server-only";
 import type { PublicProduct, ProductPlacement, BrandId } from "../contracts";
 import { catalogue, type CatalogueFact } from "../catalogue/catalogue";
 import { sha256 } from "./hashing";
+import { pricesPence, priceSources } from "../catalogue/prices";
 
 const imagePaths: Record<BrandId, { src: string; alt: string }> = {
   charitea_mate_can: {
@@ -84,10 +85,10 @@ export function publicProducts(): PublicProduct[] {
     imageAlt: imagePaths[product.id].alt,
     category: product.id === "charitea_mate_can" ? "Sparkling mate tea with citrus" : "Lightly sparkling peach, blood orange and hops",
     facts: catalogue.facts.filter((fact) => fact.brandId === product.id).map(publicFact),
-    sources: [...new Set(catalogue.facts.filter((fact) => fact.brandId === product.id).flatMap((fact) => fact.sourceIds))].map((id) => {
+    sources: [...[...new Set(catalogue.facts.filter((fact) => fact.brandId === product.id).flatMap((fact) => fact.sourceIds))].map((id) => {
       const source = catalogue.sources[id];
       return { id, ...source };
-    }),
+    }), priceSources[product.id]],
   }));
 }
 
@@ -107,7 +108,7 @@ export function createBaselineSnapshot(roundId: string, campaignId: string): Bas
     catalogueVersion: catalogue.catalogueVersion,
     campaignId,
     placement: placementForRound(roundId),
-    pricesPence: { ...catalogue.game.basePricePence },
+    pricesPence: { ...pricesPence },
     products: publicProducts(),
   } satisfies Omit<BaselineSnapshot, "hash">;
   return { ...snapshot, hash: sha256(snapshot) };

@@ -30,6 +30,15 @@ function optionalText(row: SupabaseRow, key: string): string | null {
   return value === null || value === undefined ? null : text(row, key);
 }
 
+function timestamp(row: SupabaseRow, key: string): string {
+  return new Date(text(row, key)).toISOString();
+}
+
+function optionalTimestamp(row: SupabaseRow, key: string): string | null {
+  const value = row[key];
+  return value === null || value === undefined ? null : new Date(text(row, key)).toISOString();
+}
+
 function number(row: SupabaseRow, key: string): number {
   const value = row[key];
   if (typeof value !== "number") throw new Error(`Database row is missing numeric ${key}.`);
@@ -53,8 +62,8 @@ function rowToSession(row: SupabaseRow): StoredSession {
   return {
     id: text(row, "id"),
     capabilityHash: text(row, "capability_hash"),
-    createdAt: text(row, "created_at"),
-    expiresAt: text(row, "expires_at"),
+    createdAt: timestamp(row, "created_at"),
+    expiresAt: timestamp(row, "expires_at"),
   };
 }
 
@@ -69,9 +78,9 @@ export function rowToRound(row: SupabaseRow): StoredRound {
     protocolVersion: text(row, "protocol_version"),
     revision: number(row, "revision"),
     phase: text(row, "phase") as ServerPhase,
-    createdAt: text(row, "created_at"),
-    updatedAt: text(row, "updated_at"),
-    endedAt: optionalText(row, "ended_at"),
+    createdAt: timestamp(row, "created_at"),
+    updatedAt: timestamp(row, "updated_at"),
+    endedAt: optionalTimestamp(row, "ended_at"),
     baseline: requiredJson(row, "baseline_snapshot"),
     initialBrand: optionalText(row, "initial_brand") as BrandId | null,
     targetBrand: optionalText(row, "target_brand") as BrandId | null,
@@ -90,10 +99,10 @@ export function rowToRound(row: SupabaseRow): StoredRound {
     promptVersion: optionalText(row, "prompt_version"),
     fallbackNote: json(row, "fallback_note", null),
     note: json(row, "selected_note", null),
-    noteIssuedAt: optionalText(row, "note_issued_at"),
+    noteIssuedAt: optionalTimestamp(row, "note_issued_at"),
     exposureNoteHash: optionalText(row, "exposure_note_hash"),
-    exposureClientReportedAt: optionalText(row, "exposure_client_reported_at"),
-    exposureAcknowledgedAt: optionalText(row, "exposure_acknowledged_at"),
+    exposureClientReportedAt: optionalTimestamp(row, "exposure_client_reported_at"),
+    exposureAcknowledgedAt: optionalTimestamp(row, "exposure_acknowledged_at"),
     exposureAcknowledgementSource: optionalText(row, "exposure_acknowledgement_source") as StoredRound["exposureAcknowledgementSource"],
     finalBrand: optionalText(row, "final_brand") as BrandId | null,
     switched: row["switched"] === null || row["switched"] === undefined ? null : Boolean(row["switched"]),

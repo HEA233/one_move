@@ -35,7 +35,8 @@ if (routeFiles.length !== allowedRoutes.size || routeFiles.some((route) => !allo
 }
 
 const forbiddenPatterns = [
-  { label: "external network request", pattern: /\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b/ },
+  { label: "fetch request", pattern: /\bfetch\s*\(/ },
+  { label: "external network transport", pattern: /\bXMLHttpRequest\b|\bWebSocket\b/ },
   { label: "Google GenAI SDK import", pattern: /@google\/genai/ },
   { label: "Supabase SDK import", pattern: /@supabase\/supabase-js/ },
   { label: "external URL literal", pattern: /https?:\/\/(?!www\.w3\.org\/2000\/svg\b)/ },
@@ -56,8 +57,9 @@ for (const file of sourceFiles) {
   if (!isOneMoveServer && /GEMINI_API_KEY|SUPABASE_SECRET_KEY/.test(content)) failures.push(`Private configuration referenced in ${relativeFile}.`);
   for (const { label, pattern } of forbiddenPatterns) {
     const allowedIntegration = label === "Supabase SDK import" && relativeFile === "src/features/one-move/server/supabase-repository.ts";
+    const allowedPlayerRequest = label === "fetch request" && relativeFile === "src/features/one-move/shopper/client.ts";
     const allowedPublicSource = label === "external URL literal" && isOneMoveFeature;
-    if (pattern.test(content) && !allowedIntegration && !allowedPublicSource) {
+    if (pattern.test(content) && !allowedIntegration && !allowedPublicSource && !allowedPlayerRequest) {
       failures.push(`${label} found in ${relativeFile}.`);
     }
   }

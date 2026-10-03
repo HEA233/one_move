@@ -3,10 +3,24 @@ import { catalogueCards, catalogueFacts, catalogue } from "../catalogue/catalogu
 import { brandIdSchema, finalRequestSchema, initialRequestSchema, playerStateSchema } from "../contracts";
 import { computeEligibility, makePlayerNote, renderCard } from "./evidence";
 import { selectCuratedCard } from "./selection-policy";
+import { createBaselineSnapshot, publicProducts } from "./baseline";
+import { rehearsalProducts } from "../shopper/rehearsal";
 
-const prices = { charitea_mate_can: 250, oom_balance: 250 } as const;
+const prices = { charitea_mate_can: 195, oom_balance: 300 } as const;
 
 describe("ONE MOVE Agent B contracts and evidence", () => {
+  it("freezes distinct single-can prices and keeps rehearsal aligned", () => {
+    const baseline = createBaselineSnapshot("price-check-round", "price-check-campaign");
+    expect(baseline.pricesPence).toEqual(prices);
+    expect(Object.fromEntries(rehearsalProducts.map((product) => [product.id, product.pricePence]))).toEqual(prices);
+    expect(baseline.products.find((product) => product.id === "oom_balance")?.sources.some((source) => source.id === "PRICE_OOM")).toBe(true);
+    const card = catalogueCards.get("ct_price")!;
+    expect(renderCard(card, baseline.pricesPence).patch).toMatchObject({ beforePricePence: 195, afterPricePence: 145 });
+  });
+  it("shows the sourced OOM can volume in public product details", () => {
+    const oom = publicProducts().find((product) => product.id === "oom_balance");
+    expect(oom?.facts.find((fact) => fact.id === "oom_volume")).toMatchObject({ displayValue: "250 ml", status: "public_source_checked", sourceIds: ["S04"] });
+  });
   it("keeps the full 19-card catalogue while gating the two unsupported OOM numbers", () => {
     expect(catalogue.cards).toHaveLength(19);
     expect(catalogueCards.get("oom_sugar_number")?.status).toBe("needs_verification");
@@ -35,8 +49,8 @@ describe("ONE MOVE Agent B contracts and evidence", () => {
     if (!priceCard || !reviewCard) throw new Error("Fixture cards missing.");
 
     const price = renderCard(priceCard, prices);
-    expect(price.text).toBe("Game price: £2.50 to £2.00.");
-    expect(price.patch).toMatchObject({ kind: "price", beforePricePence: 250, afterPricePence: 200, discountPence: 50 });
+    expect(price.text).toBe("Simulated offer: £3.00 to £2.50.");
+    expect(price.patch).toMatchObject({ kind: "price", beforePricePence: 300, afterPricePence: 250, discountPence: 50 });
 
     const review = renderCard(reviewCard, prices);
     expect(review.text).toBe('One reviewer wrote: "Tastes like proper tea".');

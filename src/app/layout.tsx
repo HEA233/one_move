@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GHOSTED — Preview",
-  description: "A keyless Stage 1 preview scaffold for EAT_HACK.",
+  title: "ONE MOVE | Human Truth",
+  description: "One shopper. One checked note. One more choice.",
 };
 
 export default function RootLayout({

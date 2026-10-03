@@ -95,7 +95,7 @@ function renderHighlight(card: CatalogueCard): string {
     case "ct_sugar_number-v1": return `Total sugars: ${numberFact(fact)} ${fact.unit} per 100 ml.`;
     case "ct_energy_number-v1": return `Energy: ${numberFact(fact)} ${fact.unit} per 100 ml.`;
     case "oom_taste-v1": return stringFact(fact);
-    case "oom_caffeine-v1": booleanFact(fact); return "The manufacturer describes this drink as caffeine-free.";
+    case "oom_caffeine-v1": booleanFact(fact); return "Caffeine-free, according to OOM.";
     case "oom_added_sugar-v1": booleanFact(fact); return "No added sugar, according to the manufacturer.";
     case "oom_vegan-v1": booleanFact(fact); return "The manufacturer labels this drink suitable for vegans.";
     case "oom_ingredients-v1": return `Ingredient highlights: ${arrayFact(fact).join(", ")}.`;
@@ -123,7 +123,7 @@ export function renderCard(card: CatalogueCard, pricesPence: Record<CatalogueCar
       targetBrand: card.brandId,
       family: card.family,
       title: card.title,
-      text: `Game price: £${(beforePricePence / 100).toFixed(2)} to £${(afterPricePence / 100).toFixed(2)}.`,
+      text: `Simulated offer: £${(beforePricePence / 100).toFixed(2)} to £${(afterPricePence / 100).toFixed(2)}.`,
       sourceIds,
       sources,
       patch: { kind: "price", factIds: [], beforePricePence, afterPricePence, discountPence: 50 },

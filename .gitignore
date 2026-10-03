@@ -17,6 +17,8 @@ temp/
 !.env.example
 
 .kilo/
+.impeccable/
 AGENTS.md
-GHOSTED_PREHACK_CODEX.md
 docs/
+
+.agents/

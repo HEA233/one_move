@@ -32,7 +32,8 @@ export interface OneMoveConfig {
 }
 
 export function readOneMoveConfig(environment: Record<string, string | undefined> = process.env): OneMoveConfig {
-  const parsed = environmentSchema.parse(environment);
+  const normalizedEnvironment = Object.fromEntries(Object.entries(environment).map(([key, value]) => [key, value === "" ? undefined : value]));
+  const parsed = environmentSchema.parse(normalizedEnvironment);
   const selector = parsed.AI_MODE ?? "curated";
   const liveApproved = selector === "live" && parsed.AI_USE_APPROVED === "true";
   return {

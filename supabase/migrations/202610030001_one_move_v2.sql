@@ -302,7 +302,7 @@ begin
   if round_row.phase not in ('awaiting_rechoice', 'finished') then raise exception 'conflict' using errcode = 'P0001'; end if;
 
   insert into public.om_exposures(round_id, note_snapshot_hash, event_type, client_reported_at, acknowledgement_source)
-    values (p_round_id, p_plan->>'noteHash', 'note_rendered', p_plan->>'clientReportedDisplayedAt', p_plan->>'acknowledgementSource')
+    values (p_round_id, p_plan->>'noteHash', 'note_rendered', (p_plan->>'clientReportedDisplayedAt')::timestamptz, p_plan->>'acknowledgementSource')
     on conflict (round_id, event_type, note_snapshot_hash) do nothing;
   update public.om_rounds set
     exposure_note_hash = coalesce(exposure_note_hash, p_plan->>'noteHash'),
@@ -358,7 +358,7 @@ begin
   if p_plan->'exposureAcknowledgement' is not null and jsonb_typeof(p_plan->'exposureAcknowledgement') <> 'null' then
     if p_plan->'exposureAcknowledgement'->>'noteHash' <> round_row.selected_note->>'noteHash' then raise exception 'conflict' using errcode = 'P0001'; end if;
     insert into public.om_exposures(round_id, note_snapshot_hash, event_type, client_reported_at, acknowledgement_source)
-      values (p_round_id, round_row.selected_note->>'noteHash', 'note_rendered', p_plan->'exposureAcknowledgement'->>'clientReportedDisplayedAt', 'final_payload')
+      values (p_round_id, round_row.selected_note->>'noteHash', 'note_rendered', (p_plan->'exposureAcknowledgement'->>'clientReportedDisplayedAt')::timestamptz, 'final_payload')
       on conflict (round_id, event_type, note_snapshot_hash) do nothing;
   end if;
 

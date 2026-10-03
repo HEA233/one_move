@@ -83,9 +83,8 @@ export const catalogueSchema = z
       .object({
         missionId: z.string().min(1),
         missionText: z.string().min(1),
-        priceMode: z.literal("hypothetical"),
+        priceMode: z.literal("reference_retail"),
         currency: z.literal("GBP"),
-        basePricePence: z.record(z.enum(["charitea_mate_can", "oom_balance"]), z.number().int().positive()),
         priceDisclosure: z.string().min(1),
         discountPence: z.literal(50),
         maxReasons: z.literal(2),

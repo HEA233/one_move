@@ -36,13 +36,9 @@
   "game": {
     "missionId": "afternoon-drink-v1",
     "missionText": "You are choosing one drink for an afternoon break. Which would you pick?",
-    "priceMode": "hypothetical",
+    "priceMode": "reference_retail",
     "currency": "GBP",
-    "basePricePence": {
-      "charitea_mate_can": 250,
-      "oom_balance": 250
-    },
-    "priceDisclosure": "Pretend prices. Real products. No purchase needed.",
+    "priceDisclosure": "Reference prices per can, excluding delivery. Prices vary by retailer.",
     "discountPence": 50,
     "maxReasons": 2,
     "maxOtherCharacters": 160,
@@ -411,15 +407,15 @@
       "id": "oom_volume",
       "brandId": "oom_balance",
       "key": "volume",
-      "value": null,
+      "value": 250,
       "unit": "ml",
       "basis": "one_can",
       "kind": "product_fact",
-      "status": "needs_verification",
-      "sourceIds": [],
-      "checkedDate": null,
+      "status": "public_source_checked",
+      "sourceIds": ["S04"],
+      "checkedDate": "2026-10-03",
       "packChecked": false,
-      "note": "Earlier conversation mentioned 250 ml; verify the actual can or exact matching source before setting a value."
+      "note": "The official product page specifies a 250 ml can in its vitamin table."
     },
     {
       "id": "oom_sugars",
@@ -470,7 +466,7 @@
       "brandId": "charitea_mate_can",
       "family": "price",
       "title": "A little sweeter?",
-      "shopperTextTemplate": "Game price: {price.before} to {price.after}.",
+      "shopperTextTemplate": "Simulated offer: {price.before} to {price.after}.",
       "factIds": [],
       "sourceIds": [
         "EXP01"
@@ -760,7 +756,7 @@
       "brandId": "oom_balance",
       "family": "price",
       "title": "A little sweeter?",
-      "shopperTextTemplate": "Game price: {price.before} to {price.after}.",
+      "shopperTextTemplate": "Simulated offer: {price.before} to {price.after}.",
       "factIds": [],
       "sourceIds": [
         "EXP01"
@@ -821,7 +817,7 @@
       "brandId": "oom_balance",
       "family": "proof",
       "title": "Clear up the caffeine question",
-      "shopperTextTemplate": "The manufacturer describes this drink as caffeine-free.",
+      "shopperTextTemplate": "Caffeine-free, according to OOM.",
       "factIds": [
         "oom_caffeine_free"
       ],

@@ -15,6 +15,12 @@ describe("ONE MOVE runtime configuration", () => {
     expect(databaseReady(config)).toBe(false);
   });
 
+  it("treats blank optional dotenv values as unset", () => {
+    const config = readOneMoveConfig({ SUPABASE_URL: "", SUPABASE_SECRET_KEY: "", OBSERVER_ACCESS_KEY: "" });
+    expect(databaseReady(config)).toBe(false);
+    expect(config.observerAccessKey).toBeNull();
+  });
+
   it("does not treat a model key or live mode as approval by itself", () => {
     const config = readOneMoveConfig({ AI_MODE: "live", GEMINI_API_KEY: "private-test-value", GEMINI_MODEL: "gemini-test" });
     expect(config.liveApproved).toBe(false);
